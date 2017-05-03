@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<CallbackAuction> call, Response<CallbackAuction> response) {
                 CallbackAuction resp = response.body();
                 if (resp != null) {
-                    post_total = 18;
+                    post_total = resp.meta.getPagination().getTotal();
                     displayApiResult(resp.products);
                 } else {
                     onFailRequest(page_no);
@@ -188,7 +189,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CallbackAuction> call, Throwable t) {
-                if (!call.isCanceled()) onFailRequest(page_no);
+                String message = t.getMessage();
+                Log.d("failure", message);
             }
 
         });

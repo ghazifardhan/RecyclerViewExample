@@ -22,9 +22,6 @@ public class Pagination {
     @SerializedName("total_pages")
     @Expose
     private Integer totalPages;
-    @SerializedName("links")
-    @Expose
-    private List<Object> links = null;
 
     public Integer getTotal() {
         return total;
@@ -64,14 +61,6 @@ public class Pagination {
 
     public void setTotalPages(Integer totalPages) {
         this.totalPages = totalPages;
-    }
-
-    public List<Object> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<Object> links) {
-        this.links = links;
     }
 
 }
